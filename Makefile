@@ -6,4 +6,4 @@
 all: docker_image
 
 docker_image:
-	IMAGE_NAME="kbase/kb_minideb" hooks/build
+	IMAGE_NAME="kbase/kb_jre" hooks/build

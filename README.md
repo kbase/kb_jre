@@ -1,2 +1,2 @@
-# kb_minideb
-Version of the bitnami/minideb that includes common tools for KBase images
+# kb_jre
+Version of the library/openjdk image that includes common tools for KBase images

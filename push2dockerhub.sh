@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # 
 # This script is intended to be run in the deploy stage of a travis build
 # It checks to make sure that this is a not a PR, and that we have the secure

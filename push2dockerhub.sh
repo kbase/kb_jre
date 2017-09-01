@@ -20,7 +20,7 @@ if ( [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "fal
         docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG && \
         echo "Pushing $IMAGE_NAME:$TAG" && \
         docker push $IMAGE_NAME:$TAG || \
-        echo "Failed to login and push tagged image" && exit 1
+        ( echo "Failed to login and push tagged image" && exit 1 )
     else
         echo "Not building image for branch $TAG"
     fi

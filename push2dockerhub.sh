@@ -16,11 +16,11 @@ if ( [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "fal
     # but it should be okay since we should never get here on a PR
     if  ( [ "$TAG" == "latest" ] || [ "$TAG" == "develop" ] ) ; then
         echo "Logging into Dockerhub as $DOCKER_USER"
-        docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS && \
+        docker login -u $DOCKER_USER -p $DOCKER_PASS && \
         docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG && \
-        echo "Pushing $IMAGE_NAME:TAG" && \
+        echo "Pushing $IMAGE_NAME:$TAG" && \
         docker push $IMAGE_NAME:$TAG || \
-        echo "Failed to login and push tagged image" && exit 0
+        echo "Failed to login and push tagged image" && exit 1
     else
         echo "Not building image for branch $TAG"
     fi

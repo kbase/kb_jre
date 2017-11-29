@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM jetty:jre8
 
 # These ARGs values are passed in via the docker build command
 ARG BUILD_DATE
@@ -6,11 +6,12 @@ ARG VCS_REF
 ARG BRANCH=develop
 
 # This is the JETTY_HOME for the jetty9 package
-ENV JETTY_HOME /usr/share/jetty9
 
-# Shinto-cli is a jinja2 template cmd line tool
-RUN apt-get update -y && \
-    apt-get install -y ca-certificates jetty9 && \
+USER root
+
+RUN mkdir -p /var/lib/apt/lists/partial && \
+	apt-get update -y && \
+    apt-get install -y ca-certificates tomcat8-user libservlet3.1-java && \
     update-ca-certificates && \
     mkdir -p /kb/deployment/bin
 

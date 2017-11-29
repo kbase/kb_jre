@@ -11,7 +11,7 @@ USER root
 
 RUN mkdir -p /var/lib/apt/lists/partial && \
 	apt-get update -y && \
-    apt-get install -y ca-certificates tomcat8-user && \
+    apt-get install -y ca-certificates tomcat8-user libservlet3.1-java && \
     update-ca-certificates && \
     mkdir -p /kb/deployment/bin
 

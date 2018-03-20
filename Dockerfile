@@ -13,7 +13,9 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
 	apt-get update -y && \
     apt-get install -y ca-certificates tomcat8-user libservlet3.1-java && \
     update-ca-certificates && \
-    mkdir -p /kb/deployment/bin
+    useradd -c "KBase user" -rd /kb/deployment/ -s /bin/bash kbase && \
+    mkdir -p /kb/deployment/bin && \
+    chown -R kbase /kb/deployment
 
 COPY dockerize /kb/deployment/bin
 

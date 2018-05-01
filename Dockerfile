@@ -13,9 +13,14 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
 	apt-get update -y && \
     apt-get install -y ca-certificates tomcat8-user libservlet3.1-java && \
     update-ca-certificates && \
-    useradd -c "KBase user" -rd /kb/deployment/ -s /bin/bash kbase && \
+    useradd -c "KBase user" -rd /kb/deployment/ -u 998 -s /bin/bash kbase && \
     mkdir -p /kb/deployment/bin && \
     chown -R kbase /kb/deployment
+
+# The following RUN_UID should match up with the uid from useradd for KBase above
+# it can be optionally used by the dockerize container downstream to set the EUID and
+# EGID
+ENV RUN_UID=998
 
 COPY dockerize /kb/deployment/bin
 

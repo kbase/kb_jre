@@ -17,10 +17,6 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
     mkdir -p /kb/deployment/bin && \
     chown -R kbase /kb/deployment
 
-# The following RUN_UID should match up with the uid from useradd for KBase above
-# it can be optionally used by the dockerize container downstream to set the EUID and
-# EGID
-ENV RUN_UID=998
 
 COPY dockerize /kb/deployment/bin
 

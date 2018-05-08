@@ -15,6 +15,8 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
     update-ca-certificates && \
     useradd -c "KBase user" -rd /kb/deployment/ -u 998 -s /bin/bash kbase && \
     mkdir -p /kb/deployment/bin && \
+    mkdir -p /kb/deployment/jettybase/logs/ && \
+    touch /kb/deployment/jettybase/logs/request.log && \
     chown -R kbase /kb/deployment
 
 

@@ -17,10 +17,12 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
     mkdir -p /kb/deployment/bin && \
     mkdir -p /kb/deployment/jettybase/logs/ && \
     touch /kb/deployment/jettybase/logs/request.log && \
-    chown -R kbase /kb/deployment
+    chown -R kbase /kb/deployment && \
+    cd /kb/deployment/bin && \
+    wget -N https://github.com/kbase/dockerize/raw/master/dockerize-linux-amd64-v0.6.1.tar.gz && \
+	tar xvzf dockerize-linux-amd64-v0.6.1.tar.gz && \
+    rm dockerize-linux-amd64-v0.6.1.tar.gz
 
-
-COPY dockerize /kb/deployment/bin
 
 # The BUILD_DATE value seem to bust the docker cache when the timestamp changes, move to
 # the end

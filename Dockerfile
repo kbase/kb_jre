@@ -1,4 +1,5 @@
-FROM jetty:jre8
+# FROM jetty:9
+FROM bitnami/minideb:latest
 
 # These ARGs values are passed in via the docker build command
 ARG BUILD_DATE
@@ -10,8 +11,7 @@ ARG BRANCH=develop
 USER root
 
 RUN mkdir -p /var/lib/apt/lists/partial && \
-	apt-get update -y && \
-    apt-get install -y ca-certificates tomcat8-user libservlet3.1-java && \
+    install_packages ca-certificates jetty9 tomcat9-user libservlet3.1-java wget && \
     update-ca-certificates && \
     useradd -c "KBase user" -rd /kb/deployment/ -u 998 -s /bin/bash kbase && \
     mkdir -p /kb/deployment/bin && \
@@ -29,6 +29,6 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/kbase/kb_jre.git" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.schema-version="1.0.0-rc1" \
+      org.label-schema.schema-version="1.0.1" \
       us.kbase.vcs-branch=$BRANCH \
       maintainer="Steve Chan sychan@lbl.gov"

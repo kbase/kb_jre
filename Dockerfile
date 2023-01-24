@@ -1,4 +1,4 @@
-FROM bitnami/minideb:latest
+FROM ubuntu:18.04
 
 # These ARGs values are passed in via the docker build command
 ARG BUILD_DATE
@@ -10,7 +10,10 @@ ARG BRANCH=develop
 USER root
 
 RUN mkdir -p /var/lib/apt/lists/partial && \
-    install_packages ca-certificates jetty9 tomcat9-user libservlet3.1-java wget && \
+    apt-get update -y && \
+    apt-get install -y --no-install-recommends ca-certificates jetty9 tomcat8-user libservlet3.1-java wget && \
+    apt-get clean && \
+    # install_packages ca-certificates jetty9 tomcat8-user libservlet3.1-java wget && \
     update-ca-certificates && \
     useradd -c "KBase user" -rd /kb/deployment/ -u 998 -s /bin/bash kbase && \
     mkdir -p /kb/deployment/bin && \

@@ -1,5 +1,0 @@
-{
-    "name": "Tag Production Latest",
-    "description": "Tags `latest` on the production image once a merge to main is completed",
-    "iconName": "kbase-bot"
-}
